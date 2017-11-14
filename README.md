@@ -1,2 +1,4 @@
-# PackIt
-:package:
+# TGVmax-notify
+
+
+Licence GPL v3
