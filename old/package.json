@@ -1,0 +1,26 @@
+{
+  "name": "TGVmax-notify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "notify.js",
+  "dependencies": {
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "request": "^2.81.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadFox/TGVmax-notify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeadFox/TGVmax-notify/issues"
+  },
+  "homepage": "https://github.com/HeadFox/TGVmax-notify#readme"
+}
