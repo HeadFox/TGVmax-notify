@@ -8,9 +8,9 @@
   - departure station
   - departure date (prefer)
   - arrival station
-  - arrival date (prefer)
+  - back date (prefer)
   - mail alert
-  - smartphone alert
- 
+  - (smartphone alert) ?
+
 
 Licence GPL v3
