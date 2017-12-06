@@ -18,6 +18,7 @@ const config = {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.png'],
     alias: {
       // config: path.resolve(__dirname, 'config', 'config.js'),
+      services: path.resolve(__dirname, 'src/services'),
       commons: path.resolve(__dirname, 'src/components/commons'),
       images: path.resolve(__dirname, 'src/assets/images'),
     },

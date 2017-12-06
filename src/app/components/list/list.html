@@ -1,0 +1,15 @@
+<div ng-controller="listController">
+  <ul class="list">
+    <li class="list__item" ng-repeat="(key, item) in list">
+      <p>Domain : {{item.domain}}</p>
+      <p>Path : {{item.path}}</p>
+      <p>Active : {{item.active}}</p>
+      <p>Size : {{item.size}}</p>
+      <p>Lastname : {{item.user.lastname}}</p>
+      <p>Firstname : {{item.user.firstname}}</p>
+      <p>Username : {{item.user.username}}</p>
+      <button ng-click="toggleVhost(item.domain)">Enable/Disable</button>
+      <button ng-click="deleteVhost(item.domain)">Delete</button>
+    </li>
+  </ul>
+</div>
