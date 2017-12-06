@@ -32,4 +32,9 @@ lightPanel.service('callToApi', ['$http', function ($http) {//eslint-disable-lin
     method: 'POST',
     url: `http://${url}:3001/addUser?lastname=${lastname}&firstname=${firstname}&username=${username}`,
   });
+
+  this.addDomain = (domain) => $http({
+    method: 'POST',
+    url: `http://${url}:3001/addvhost?domain=${domain}`,
+  });
 }]);
