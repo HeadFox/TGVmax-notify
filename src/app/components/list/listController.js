@@ -1,4 +1,5 @@
 import angular from 'angular';
+import * as R from 'ramda';
 import './list.html';
 import './list.scss';
 import '../../services/callToApi'; //eslint-disable-line
@@ -7,7 +8,6 @@ const lightPanel = angular.module('lightPanel');
 
 lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToApi) => {
   $scope.list = {};
-
   const listVhosts = () => {
     callToApi.listVhosts()
       .then((results) => {
@@ -17,6 +17,15 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
       .catch((err) => {
         console.log('Error --->', err);
       });
+
+      callToApi.listUsers()
+        .then((results) => {
+          console.log('Users -->', results.data);
+          $scope.users = results.data;
+        })
+        .catch((err) => {
+          console.log('Error --->', err);
+        });
   };
 
   $scope.toggleVhost = (domain) => {
@@ -35,5 +44,12 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
       });
   };
 
+  $scope.updateVhostUser = (username, domain) => {
+    callToApi.changeVhostUser(username, domain)
+      .then((results) => {
+        console.log('Ok -->', results);
+        listVhosts();
+      });
+  }
   listVhosts();
 }]);
