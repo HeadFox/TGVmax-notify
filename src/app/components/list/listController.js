@@ -1,5 +1,5 @@
 import angular from 'angular';
-import * as R from 'ramda';
+// import * as R from 'ramda';
 import './list.html';
 import './list.scss';
 import '../../services/callToApi'; //eslint-disable-line
@@ -8,7 +8,7 @@ const lightPanel = angular.module('lightPanel');
 
 lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToApi) => {
   $scope.list = {};
-  const listVhosts = () => {
+  $scope.$on('listVhosts', () => {
     callToApi.listVhosts()
       .then((results) => {
         console.log('Vhosts -->', results.data);
@@ -18,21 +18,21 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
         console.log('Error --->', err);
       });
 
-      callToApi.listUsers()
-        .then((results) => {
-          console.log('Users -->', results.data);
-          $scope.users = results.data;
-        })
-        .catch((err) => {
-          console.log('Error --->', err);
-        });
-  };
+    callToApi.listUsers()
+      .then((results) => {
+        console.log('Users -->', results.data);
+        $scope.users = results.data;
+      })
+      .catch((err) => {
+        console.log('Error --->', err);
+      });
+  });
 
   $scope.toggleVhost = (domain) => {
     callToApi.toggleVhost(domain)
       .then((results) => {
         console.log('Vhosts -->', results);
-        listVhosts();
+        $scope.$emit('listVhosts');
       });
   };
 
@@ -40,7 +40,7 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
     callToApi.deleteVhost(domain)
       .then((results) => {
         console.log('Vhosts -->', results);
-        listVhosts();
+        $scope.$emit('listVhosts');
       });
   };
 
@@ -48,8 +48,8 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
     callToApi.changeVhostUser(username, domain)
       .then((results) => {
         console.log('Ok -->', results);
-        listVhosts();
+        $scope.$emit('listVhosts');
       });
-  }
-  listVhosts();
+  };
+  $scope.$emit('listVhosts');
 }]);

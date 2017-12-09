@@ -1,5 +1,6 @@
 import angular from 'angular';
-const url = '95.85.29.14';
+
+const url = '10.8.174.77';
 const lightPanel = angular.module('lightPanel');
 
 lightPanel.service('callToApi', ['$http', function ($http) {//eslint-disable-line
@@ -33,7 +34,7 @@ lightPanel.service('callToApi', ['$http', function ($http) {//eslint-disable-lin
     url: `http://${url}:3001/addUser?lastname=${lastname}&firstname=${firstname}&username=${username}`,
   });
 
-  this.addDomain = (domain) => $http({
+  this.addDomain = domain => $http({
     method: 'POST',
     url: `http://${url}:3001/addvhost?domain=${domain}`,
   });
