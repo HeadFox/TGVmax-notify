@@ -23,6 +23,7 @@
        <md-button class="md-fab md-mini" ng-disabled="false" aria-label="Comment" ng-click="deleteVhost(item.domain)">
            <md-icon class="material-icons">delete</md-icon>
        </md-button>
+       <md-button class="md-raised" ng-href="/#/details/{{item.domain}}">Details</md-button>
     </li>
   </ul>
 </div>
@@ -32,14 +33,20 @@
      toggling-method="hover">
   <button
     mfb-button
-    icon="material-icons icon__personadd"
+    icon="material-icons icon__www"
     ng-click="showDomainForm()"
     label="Create domain">
   </button>
   <button
     mfb-button
-    icon="material-icons icon__www"
+    icon="material-icons icon__personadd"
     ng-click="showUserForm()"
     label="Create user">
+  </button>
+  <button
+    mfb-button
+    icon="material-icons icon__list"
+    ng-click="showTodoList()"
+    label="Todo list">
   </button>
 </nav>

@@ -9,6 +9,20 @@ lightPanel.service('callToApi', ['$http', function ($http) {//eslint-disable-lin
     url: `http://${url}:3001/listvhosts`,
   });
 
+  this.detailsVhost = domain => $http({
+    method: 'GET',
+    url: `http://${url}:3001/detailsvhost?domain=${domain}`,
+  });
+
+  // this.updateNginx = (domain, nginx) => $http({
+  //   method: 'PUT',
+  //   url: `http://${url}:3001/updatenginx?domain=${domain}&nginx=${nginx}`,
+  // });
+  this.updateNginx = (domain, nginx) => $http({
+    method: 'PUT',
+    url: `http://${url}:3001/updatenginx?domain=${domain}&nginx=${nginx}`,
+  });
+
   this.listUsers = () => $http({
     method: 'GET',
     url: `http://${url}:3001/listusers`,

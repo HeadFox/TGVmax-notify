@@ -4,18 +4,16 @@ import './list.html';
 import './list.scss';
 import createDomain from '../createDomain/createDomain.html';
 import createUser from '../createUser/createUser.html';
+import todoList from '../todoList/todoList.html';
 import '../../services/callToApi';
 
-console.log(createDomain);
-console.log(createUser);
 const lightPanel = angular.module('lightPanel');
 
-lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($scope, callToApi, $mdDialog) => {
+lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', '$mdToast', ($scope, callToApi, $mdDialog, $mdToast) => {
   $scope.list = {};
   $scope.$on('listVhosts', () => {
     callToApi.listVhosts()
       .then((results) => {
-        console.log('Vhosts -->', results.data);
         $scope.list = results.data;
       })
       .catch((err) => {
@@ -24,7 +22,7 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($s
 
     callToApi.listUsers()
       .then((results) => {
-        console.log('Users -->', results.data);
+        // console.log('Users -->', results.data);
         $scope.users = results.data;
       })
       .catch((err) => {
@@ -35,15 +33,18 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($s
   $scope.toggleVhost = (domain) => {
     callToApi.toggleVhost(domain)
       .then((results) => {
-        console.log('Vhosts -->', results);
+        $mdToast.showSimple(`Succefully ${results.data} : ${domain}`);
         $scope.$emit('listVhosts');
+      })
+      .catch((err) => {
+        console.log('Error -->', err);
       });
   };
 
   $scope.deleteVhost = (domain) => {
     callToApi.deleteVhost(domain)
-      .then((results) => {
-        console.log('Vhosts -->', results);
+      .then(() => {
+        $mdToast.showSimple(`Succefully delete vhost : ${domain}`);
         $scope.$emit('listVhosts');
       });
   };
@@ -51,6 +52,7 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($s
   $scope.updateVhostUser = (username, domain) => {
     callToApi.changeVhostUser(username, domain)
       .then(() => {
+        $mdToast.showSimple(`Succefully update vhost user for ${domain}`);
         $scope.$emit('listVhosts');
       })
       .catch(() => {
@@ -73,5 +75,14 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($s
       clickOutsideToClose: true,
     });
   };
+
+  $scope.showTodoList = () => {
+    $mdDialog.show({
+      parent: angular.element(document.body),
+      templateUrl: todoList,
+      clickOutsideToClose: true,
+    });
+  };
+
   $scope.$emit('listVhosts');
 }]);

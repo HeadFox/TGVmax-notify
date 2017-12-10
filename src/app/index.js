@@ -13,5 +13,9 @@ lightPanel.config(['$routeProvider', '$locationProvider', ($routeProvider, $loca
       templateUrl: 'views/list.html',
       controller: 'listController',
     })
+    .when('/details/:domain', {
+      templateUrl: 'views/domainDetails.html',
+      controller: 'domainDetailsController',
+    })
     .otherwise({ redirectTo: '/list' });
 }]);

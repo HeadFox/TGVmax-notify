@@ -12,11 +12,6 @@
     padding: 15px;
     margin: 10px;
     box-shadow: $shadow-z1;
-
-    &:hover {
-      box-shadow: $shadow-z3;
-      transition: $shadow-transition;
-    }
   }
 }
 
@@ -39,5 +34,9 @@
 
   &__www::after {
     content: "language";
+  }
+
+  &__list::after {
+    content: "list";
   }
 }
