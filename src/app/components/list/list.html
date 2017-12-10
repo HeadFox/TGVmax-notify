@@ -1,34 +1,45 @@
 <div>
   <ul class='list'>
     <li class='list__item' ng-repeat='(key, item) in list'>
-      <p>Domain : {{item.domain}}</p>
-      <p>Path : {{item.path}}</p>
-      <p>Active : {{item.active}}</p>
-      <p>Size : {{item.size}}</p>
-      <p>Lastname : {{item.user.lastname}}</p>
-      <p>Firstname : {{item.user.firstname}}</p>
-      <select
-        ng-model='vhostUser'
-        ng-options='x.username for x in users'
-        ng-change='updateVhostUser(vhostUser.username, item.domain)'
-      >
-      </select>
-      <button ng-click='toggleVhost(item.domain)'>Enable/Disable</button>
-      <button ng-click='deleteVhost(item.domain)'>Delete</button>
+      <div>Domain : {{item.domain}}</div>
+      <div>Path : {{item.path}}</div>
+      <div>
+        <md-switch aria-label="active" md-invert ng-model="item.active" ng-change='toggleVhost(item.domain)'>
+          Active
+        </md-switch>
+      </div>
+      <div>Size : {{item.size}}</div>
+      <div>Lastname : {{item.user.lastname}}</div>
+      <div>Firstname : {{item.user.firstname}}</div>
+      <md-input-container>
+         <label>Username</label>
+         <md-select ng-model="item.user.username"  ng-change='updateVhostUser(item.user.username, item.domain)'>
+           <md-option><em>None</em></md-option>
+           <md-option ng-repeat="user in users" ng-value="user.username">
+             {{user.username}}
+           </md-option>
+         </md-select>
+       </md-input-container>
+       <md-button class="md-fab md-mini" ng-disabled="false" aria-label="Comment" ng-click="deleteVhost(item.domain)">
+           <md-icon class="material-icons">delete</md-icon>
+       </md-button>
     </li>
   </ul>
 </div>
-<div ng-controller='createUserController'>
-  <form>
-    <label>Lastname: <input type="text" ng-model="user.lastname" /></label><br />
-    <label>Firstname: <input type="text" ng-model="user.firstname" /></label><br />
-    <label>Username: <input type="text" ng-model="user.username" /></label><br />
-    <input type="submit" ng-click="createUser(user)" value="Save" />
-  </form>
-</div>
-<div ng-controller='createDomainController'>
-  <form>
-    <label>Domain: <input type="text" ng-model="domain" /></label><br />
-    <input type="submit" ng-click="createDomain(domain)" value="Save" />
-  </form>
-</div>
+<nav mfb-menu position="br" effect="zoomin"
+     active-icon="material-icons icon__close"
+     resting-icon="material-icons icon__add"
+     toggling-method="hover">
+  <button
+    mfb-button
+    icon="material-icons icon__personadd"
+    ng-click="showDomainForm()"
+    label="Create domain">
+  </button>
+  <button
+    mfb-button
+    icon="material-icons icon__www"
+    ng-click="showUserForm()"
+    label="Create user">
+  </button>
+</nav>

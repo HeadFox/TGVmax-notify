@@ -1,0 +1,22 @@
+<div ng-controller='createUserController' class="md-dialog-container" id="createUserDialog">
+  <md-dialog class="dialog">
+    <h4>Create a new user</h4>
+    <form class="form">
+      <div>
+        <md-input-container flex-gt-sm>
+          <label>Lastname</label>
+          <input ng-model="user.lastname">
+        </md-input-container>
+        <md-input-container flex-gt-sm>
+          <label>Firstname</label>
+          <input ng-model="user.firstname">
+        </md-input-container>
+        <md-input-container flex-gt-sm>
+          <label>Username</label>
+          <input ng-model="user.username">
+        </md-input-container>
+      </div>
+      <md-button type="submit" ng-click="createUser(user)">Submit</md-button>
+    </form>
+  </md-dialog>
+</div>

@@ -45,7 +45,7 @@ const config = {
           ],
         }),
       }, {
-        test: /\.(jpe?g|png|gif)$/i,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file-loader?context=src/assets/images/&name=images/[path][name].[ext]', {
             loader: 'image-webpack-loader',

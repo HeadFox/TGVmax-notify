@@ -2,11 +2,15 @@ import angular from 'angular';
 // import * as R from 'ramda';
 import './list.html';
 import './list.scss';
-import '../../services/callToApi'; //eslint-disable-line
+import createDomain from '../createDomain/createDomain.html';
+import createUser from '../createUser/createUser.html';
+import '../../services/callToApi';
 
+console.log(createDomain);
+console.log(createUser);
 const lightPanel = angular.module('lightPanel');
 
-lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToApi) => {
+lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', ($scope, callToApi, $mdDialog) => {
   $scope.list = {};
   $scope.$on('listVhosts', () => {
     callToApi.listVhosts()
@@ -46,10 +50,28 @@ lightPanel.controller('listController', ['$scope', 'callToApi', ($scope, callToA
 
   $scope.updateVhostUser = (username, domain) => {
     callToApi.changeVhostUser(username, domain)
-      .then((results) => {
-        console.log('Ok -->', results);
+      .then(() => {
+        $scope.$emit('listVhosts');
+      })
+      .catch(() => {
         $scope.$emit('listVhosts');
       });
+  };
+
+  $scope.showDomainForm = () => {
+    $mdDialog.show({
+      parent: angular.element(document.body),
+      templateUrl: createDomain,
+      clickOutsideToClose: true,
+    });
+  };
+
+  $scope.showUserForm = () => {
+    $mdDialog.show({
+      parent: angular.element(document.body),
+      templateUrl: createUser,
+      clickOutsideToClose: true,
+    });
   };
   $scope.$emit('listVhosts');
 }]);

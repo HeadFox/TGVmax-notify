@@ -1,5 +1,43 @@
+@import "../../../assets/stylesheets/config.scss";
+
 .list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+
   &__item {
+    width: 40%;
+    height: 200px;
+    padding: 15px;
     margin: 10px;
+    box-shadow: $shadow-z1;
+
+    &:hover {
+      box-shadow: $shadow-z3;
+      transition: $shadow-transition;
+    }
+  }
+}
+
+.dialog {
+  padding: 15px;
+}
+
+.icon {
+  &__add::after {
+    content: "add";
+  }
+
+  &__close::after {
+    content: "add";
+  }
+
+  &__personadd::after {
+    content: "person_add";
+  }
+
+  &__www::after {
+    content: "language";
   }
 }

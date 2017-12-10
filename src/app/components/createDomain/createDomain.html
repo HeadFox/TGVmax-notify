@@ -1,0 +1,14 @@
+<div ng-controller='createDomainController' class="md-dialog-container" id="createDomainDialog">
+  <md-dialog class="dialog">
+    <h4>Create a new domain</h4>
+    <form class="form">
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Domain</label>
+          <input ng-model="domain">
+        </md-input-container>
+      </div>
+      <md-button type="submit" ng-click="createDomain(domain)">Submit</md-button>
+    </form>
+  </md-dialog>
+</div>
