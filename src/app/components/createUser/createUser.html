@@ -11,12 +11,17 @@
           <label>Firstname</label>
           <input ng-model="user.firstname">
         </md-input-container>
-        <md-input-container flex-gt-sm>
-          <label>Username</label>
-          <input ng-model="user.username">
-        </md-input-container>
+        <md-input-container>
+           <label>Username</label>
+           <md-select ng-model="sshUser">
+             <md-option><em>None</em></md-option>
+             <md-option ng-repeat="user in sshUsers" ng-value="user">
+               {{user}}
+             </md-option>
+           </md-select>
+         </md-input-container>
       </div>
-      <md-button type="submit" ng-click="createUser(user)">Submit</md-button>
+      <md-button type="submit" ng-click="createUser(user, sshUser)">Submit</md-button>
     </form>
   </md-dialog>
 </div>

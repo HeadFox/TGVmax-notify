@@ -6,11 +6,18 @@ import '../../services/callToApi'; //eslint-disable-line
 const lightPanel = angular.module('lightPanel');
 
 lightPanel.controller('createUserController', ['$scope', 'callToApi', '$mdDialog', ($scope, callToApi, $mdDialog) => {
-  $scope.createUser = (user) => {
-    callToApi.addUser(user.lastname, user.firstname, user.username)
+  callToApi.listSshUsers()
+    .then((results) => {
+      $scope.sshUsers = results.data;
+    })
+    .catch((err) => {
+      console.log('Error --->', err);
+    });
+  $scope.createUser = (user, sshUser) => {
+    callToApi.addUser(user.lastname, user.firstname, sshUser)
       .then(() => {
-        $scope.$emit('listVhosts');
         $mdDialog.hide();
+        $scope.$emit('listVhosts');
       });
   };
 }]);
