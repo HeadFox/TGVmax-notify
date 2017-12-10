@@ -1,0 +1,8 @@
+<div ng-controller='todoListController' class="md-dialog-container" id="todoList">
+  <md-dialog class="dialog todolist">
+    <md-input-container class="md-block">
+     <label>Todo List</label>
+     <textarea ng-model="todoList" class="todolist__area" ng-change="updateContent(todoList)" rows="3" md-select-on-focus></textarea>
+    </md-input-container>
+  </md-dialog>
+</div>

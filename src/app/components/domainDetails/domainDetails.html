@@ -1,0 +1,27 @@
+<div>Domain : {{domain}}</div>
+<div>Path : {{details.path}}</div>
+<div>
+  <md-switch aria-label="active" md-invert ng-model="details.active" ng-change='toggleVhost(domain)'>
+    Active
+  </md-switch>
+</div>
+<div>Size : {{details.size}}</div>
+<div>Lastname : {{details.user.lastname}}</div>
+<div>Firstname : {{details.user.firstname}}</div>
+<md-input-container>
+   <label>Username</label>
+   <md-select ng-model="details.user.username"  ng-change='updateVhostUser(details.user.username, domain)'>
+     <md-option><em>None</em></md-option>
+     <md-option ng-repeat="user in users" ng-value="user.username">
+       {{details.user.username}}
+     </md-option>
+   </md-select>
+ </md-input-container>
+ <md-button class="md-fab md-mini" ng-disabled="false" aria-label="Comment" ng-click="deleteVhost(domain)">
+     <md-icon class="material-icons">delete</md-icon>
+ </md-button>
+<md-input-container class="md-block">
+ <label>Nginx File</label>
+ <textarea ng-model="nginxFile" class="details__nginx" rows="3" md-select-on-focus></textarea>
+ <md-button class="md-raised" ng-click="updateNginx(nginxFile)">Submit</md-button>
+</md-input-container>
