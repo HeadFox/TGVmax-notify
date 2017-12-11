@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-const url = '51.15.72.151';
+const url = '139.59.185.130';
 const lightPanel = angular.module('lightPanel');
 
 lightPanel.service('callToApi', ['$http', function ($http) {//eslint-disable-line
