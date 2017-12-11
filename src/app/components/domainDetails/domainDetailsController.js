@@ -44,6 +44,17 @@ lightPanel.controller('domainDetailsController', ['$scope', '$mdToast', '$localS
       });
   };
 
+  $scope.toggleVhost = (domain) => {
+    callToApi.toggleVhost(domain)
+      .then((results) => {
+        $mdToast.showSimple(`Succefully ${results.data} : ${domain}`);
+        getDetails();
+      })
+      .catch((err) => {
+        console.log('Error -->', err);
+      });
+  };
+
   $scope.updateVhostUser = (username, domain) => {
     callToApi.changeVhostUser(username, domain)
       .then(() => {

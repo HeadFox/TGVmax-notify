@@ -1,6 +1,10 @@
 .details {
+  padding: 10px 25px;
+
   &__nginx {
     max-height: 500px;
     overflow: scroll;
+    background-color: #212121 !important; //TODO: remove this shit
+    color: #ffffff !important;
   }
 }

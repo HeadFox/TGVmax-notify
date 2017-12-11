@@ -15,6 +15,7 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', '$m
     callToApi.listVhosts()
       .then((results) => {
         $scope.list = results.data;
+        console.log(results.data);
       })
       .catch((err) => {
         console.log('Error --->', err);
@@ -82,6 +83,15 @@ lightPanel.controller('listController', ['$scope', 'callToApi', '$mdDialog', '$m
       templateUrl: todoList,
       clickOutsideToClose: true,
     });
+  };
+
+  $scope.addHttps = (domain) => {
+    callToApi.addHttps(domain)
+      .then(() => {
+        $mdToast.showSimple(`Succefully add https for ${domain}`);
+        $scope.$emit('listVhosts');
+      })
+      .catch(() => $mdToast.showSimple(`Error while create https for ${domain}`));
   };
 
   $scope.$emit('listVhosts');

@@ -24,6 +24,7 @@
            <md-icon class="material-icons">delete</md-icon>
        </md-button>
        <md-button class="md-raised" ng-href="/#/details/{{item.domain}}">Details</md-button>
+       <md-button class="md-raised" ng-if="!item.https" ng-click="addHttps(item.domain)">Enable HTTPS</md-button>
     </li>
   </ul>
 </div>

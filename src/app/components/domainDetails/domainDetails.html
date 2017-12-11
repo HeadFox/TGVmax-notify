@@ -1,3 +1,7 @@
+<div class="details">
+<md-button class="md-icon-button" aria-label="back" ng-href="/#/list">
+ <md-icon class="material-icons">arrow_back</md-icon>
+</md-button>
 <div>Domain : {{domain}}</div>
 <div>Path : {{details.path}}</div>
 <div>
@@ -13,7 +17,7 @@
    <md-select ng-model="details.user.username"  ng-change='updateVhostUser(details.user.username, domain)'>
      <md-option><em>None</em></md-option>
      <md-option ng-repeat="user in users" ng-value="user.username">
-       {{details.user.username}}
+       {{user.username}}
      </md-option>
    </md-select>
  </md-input-container>
@@ -25,3 +29,4 @@
  <textarea ng-model="nginxFile" class="details__nginx" rows="3" md-select-on-focus></textarea>
  <md-button class="md-raised" ng-click="updateNginx(nginxFile)">Submit</md-button>
 </md-input-container>
+</div>
